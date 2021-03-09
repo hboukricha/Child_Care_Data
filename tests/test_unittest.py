@@ -11,7 +11,8 @@ class Test_Read_Filter_Data(unittest.TestCase):
         # test should succeed by giving the following file_name and file_format as input
         file_name = "/home/hana/develop/projects/my_api_projects/Child_Care_Data/tests/child_care_data.csv"
         file_format = "csv"
-        year = "2007"
+        year = "2007" # possible values from 2007 to 2020. Note that possible test optimization: iterate through all year values!
+        location = "Insgesamt" # possible values Tageseinrichtung, Tagespflege, Insgesamt. Note that possible test optimization: iterate through all location values!
 
         # test should fail by giving the following file_name as input
         # corresponding exception is catched by implemented code
@@ -29,6 +30,11 @@ class Test_Read_Filter_Data(unittest.TestCase):
         #year = "2021" # year not included within data
         #year = ""
 
+        # test should fail by giving the following location as input
+        # corresponding exception is catched by implemented code
+        #location = "any" # location not included within data
+        #location = ""
+
         # tesing read data frames
         data = child_care_data.read_data(file_name, file_format)
         data_csv = child_care_data_csv.read_data_csv(file_name) 
@@ -36,9 +42,13 @@ class Test_Read_Filter_Data(unittest.TestCase):
        
         # tesing get_data_year data frames
         data_year = child_care_data.get_data_year(year, data, file_format)
-        data_year_csv = child_care_data_csv.get_data_year_csv(year, data_year)
+        data_year_csv = child_care_data_csv.get_data_year_csv(year, data)
         assert_frame_equal(data_year, data_year_csv)
 
+        # testing get_data_year_location data frames
+        data_year_location = child_care_data.get_data_year_location(year, location, data, file_format)
+        data_year_location_csv = child_care_data_csv.get_data_year_location_csv(year, location, data)
+        assert_frame_equal(data_year_location, data_year_location_csv)
 
 if __name__ == '__main__':
     unittest.main()

@@ -24,7 +24,7 @@
 # @Author: hana.boukricha
 # @Date:   2021-03-06 22:12:41
 # @Last Modified by:   hana.boukricha
-# @Last Modified time: 2021-03-09 21:32:45
+# @Last Modified time: 2021-03-09 22:56:42
 
 """ This module provides an api to retrieve data on child care numbers in Baden Wuertemberg """
 
@@ -48,7 +48,7 @@ def read_data(file_name, file_format):
 
 
 def get_data_year(year, data_structure, data_format):
-    """provides available data for a given year from a given data_structure for a given data_format"""
+    """returns data_year with data for str year from data_structure with str data_format. data_structure type depends on data_format."""
     if year == "" or data_format == "":
         print("function child_care_data.get_data_year: year or data_format are empty!")
 
@@ -64,9 +64,21 @@ def get_data_year(year, data_structure, data_format):
     return data_year
 
 
-def get_data_year_location(year, location, data_structure):
-    """provides available data for a given year and a given location"""
-    child_care_data_csv.get_data_year_location_csv(year, location, data_structure)
+def get_data_year_location(year, location, data_structure, data_format):
+    """returns data_year_location for str year and str location from data_structure with str data_format. data_structure type depends on data_format."""
+    if year == "" or location == "" or data_format == "":
+        print("function child_care_data.get_data_year_location: year or location or data_format are empty!")
+    
+    if data_format == "csv":
+        data_year_location = child_care_data_csv.get_data_year_location_csv(year, location, data_structure)
+    else:
+        data_year_location = None
+        print("function child_care_data.get_data_year_location: Specified data_format is not supported, please look at the api user manual for supported formats!")
+    
+    if data_year_location is None: 
+        raise Exception("function child_care_data.get_data_year_location: data object is of type None!") 
+    
+    return data_year_location
 
 
 def get_data_year_age(year, age, data_structure):
@@ -74,8 +86,8 @@ def get_data_year_age(year, age, data_structure):
     child_care_data_csv.get_data_year_age_csv(year, age, data_structure)
 
 
-# First manual tests of function get_data_year
+# First manual tests of function get_data_year_location
 #new_data = read_data("/home/hana/develop/projects/my_api_projects/Child_Care_Data/tests/child_care_data.csv", "csv")
 #new_data = read_data("/home/hana/develop/projects/my_api_projects/Child_Care_Data/tests/child_care_data_corrupted.csv", "csv")
 #new_data = read_data("data", "csv")
-#print(get_data_year("2007", new_data, "csv"))
+#print(get_data_year_location("2007", "Insgesamt", new_data, "csv"))

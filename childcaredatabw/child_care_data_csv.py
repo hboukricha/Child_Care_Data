@@ -24,7 +24,7 @@
 # @Author: hana.boukricha
 # @Date:   2021-03-08 09:49:19
 # @Last Modified by:   hana.boukricha
-# @Last Modified time: 2021-03-09 21:17:46
+# @Last Modified time: 2021-03-09 23:01:07
 
 """ This module implements api to retrieve csv formatted data on child care numbers in Baden Wuertemberg """
 
@@ -33,7 +33,7 @@ import pandas as pd
 
 
 def read_data_csv(file_name):
-    """ read csv formatted data from str file_name and returns a pandas DataFrame csv_data. """
+    """ read csv formatted data from str file_name and returns a pandas dataframe csv_data. """
     try: 
         csv_data = pd.read_csv(file_name, delimiter=";", skiprows=2, header=None) 
     except Exception as error:
@@ -60,7 +60,7 @@ def read_data_csv(file_name):
    
 
 def get_data_year_csv(year, dataframe):
-    """ filters data per str year from pandas dataframe and returns a new sliced pandas csv_data_year including all the data for the given year. """
+    """ filters data per str year from pandas dataframe and returns a new sliced pandas csv_data_year including all the data for str year. """
     if dataframe is None:
         raise Exception("function child_care_data_csv.get_data_year_csv: data object is of type None!")
     try:  
@@ -86,8 +86,34 @@ def get_data_year_csv(year, dataframe):
 
 
 def get_data_year_location_csv(year, location, dataframe):
-    pass
-
+    """ filters data per str year and str location from pandas dataframe and returns a new sliced pandas csv_data_year_location including all the data for str year and str location. """
+    if dataframe is None:
+        raise Exception("function child_care_data_csv.get_data_year_location_csv: data object is of type None!")
+    try:  
+        num_rows = len(dataframe)
+        num_columns = len(dataframe.columns)
+        # initialize csv_data_year_location as empty DataFrame
+        csv_data_year_location = pd.DataFrame()
+        # going through all rows and columns of the DataFrame 
+        for i in range(num_rows) :
+            for j in range (num_columns) :
+                el_year = dataframe.iloc[i, j] 
+                if(el_year == year):
+                    # going through columns within a year
+                    for k in range (num_columns):
+                        el_location = dataframe.iloc[i, k]
+                        if (el_location == location):
+                            # include all elements related to a given year and location within new DataFrame csv_data_year_location 
+                            csv_data_year_location = dataframe.iloc[i:i+7, [0, k]]
+        if csv_data_year_location.empty:
+            raise Exception("function child_care_data_csv.get_data_year_location_csv: data frame is empty. Possible reason: Input year or location is not found.")
+        if csv_data_year_location is None:
+            raise Exception("function child_care_data_csv.get_data_year_location_csv: data object is of type None!")            
+    except Exception as error:
+        print(error)
+    else:
+        return csv_data_year_location
+    
 
 def get_data_year_age_csv(year, age, dataframe):
     pass
