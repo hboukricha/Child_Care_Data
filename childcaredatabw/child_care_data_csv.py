@@ -24,16 +24,23 @@
 # @Author: hana.boukricha
 # @Date:   2021-03-08 09:49:19
 # @Last Modified by:   hana.boukricha
-# @Last Modified time: 2021-03-08 22:42:58
+# @Last Modified time: 2021-03-09 13:24:50
 
-""" This module implements api to retrieve csv formatted data on child care numbers in BW """
+""" This module implements api to retrieve csv formatted data on child care numbers in Baden Wuertemberg """
 
-#import re as regex
-#import pandas as pd
+import re as regex
+import pandas as pd
 
 
-def read_data_csv(file_name, file_format):
-    pass
+def read_data_csv(file_name):
+    """ read csv formatted data from str file_name and returns a pandas DataFrame csv_data. """
+    try: 
+        csv_data = pd.read_csv(file_name, delimiter=";", skiprows=2, header=None) 
+    except Exception as error:
+        print(error)
+    else:
+        return csv_data
+   
 
 def get_data_year_csv(year, dataframe):
     pass
