@@ -24,7 +24,7 @@
 # @Author: hana.boukricha
 # @Date:   2021-03-06 22:12:41
 # @Last Modified by:   hana.boukricha
-# @Last Modified time: 2021-03-09 13:54:22
+# @Last Modified time: 2021-03-09 15:34:55
 
 """ This module provides an api to retrieve data on child care numbers in Baden Wuertemberg """
 
@@ -57,6 +57,6 @@ def get_data_year_age(year, age, data_structure):
     child_care_data_csv.get_data_year_age_csv(year, age, data_structure)
 
 #First tests of functions: include this in unittests!
-read_data("/home/hana/develop/projects/my_api_projects/Child_Care_Data/tests/child_care_data.csv", "csv")
+#read_data("/home/hana/develop/projects/my_api_projects/Child_Care_Data/tests/child_care_data.csv", "csv")
 #read_data("data", "csv")
 #read_data("/home/hana/develop/projects/my_api_projects/Child_Care_Data/tests/child_care_data_corrupted.csv", "csv")
