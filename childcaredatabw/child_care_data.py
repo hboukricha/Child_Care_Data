@@ -24,7 +24,7 @@
 # @Author: hana.boukricha
 # @Date:   2021-03-06 22:12:41
 # @Last Modified by:   hana.boukricha
-# @Last Modified time: 2021-03-10 11:50:14
+# @Last Modified time: 2021-03-10 15:39:27
 
 """ This module provides an integrable api library to retrieve data on child care numbers in Baden Wuertemberg """
 
@@ -108,10 +108,3 @@ def get_data_year_age(year, age, data_structure, data_format):
         raise Exception("function child_care_data.get_data_year_age: data object is of type None!") 
     
     return data_year_age
-
-
-# First manual tests of function get_data_year_age
-#new_data = read_data("/home/hana/develop/projects/my_api_projects/Child_Care_Data/tests/child_care_data.csv", "csv")
-#new_data = read_data("/home/hana/develop/projects/my_api_projects/Child_Care_Data/tests/child_care_data_corrupted.csv", "csv")
-#new_data = read_data("data", "csv")
-#print(get_data_year_age("2007", "" ,new_data, "csv"))
