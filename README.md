@@ -4,10 +4,9 @@ childcaredatabw is an integrable Python api by which data can be queried from a 
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install childcaredatabw. 
-(will use a https://test.pypi.org/)
 
 ```bash
-python3 - m pip install childcaredatabw
+python3 -m pip install -i https://test.pypi.org/simple/ childcaredatabw==0.0.4
 ```
 
 ## Usage
