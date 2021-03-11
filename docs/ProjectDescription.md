@@ -1,6 +1,6 @@
 # Project Working Steps
-- The project working steps are described as Software Lifecycle Development (SLDC) steps.
-- The working model within SLDC was iterative, i.e. start with required simple features and increment iteratively to further additional / more  complex features.
+- The project working steps are described as Software Development Life Cycle (SDLC) steps.
+- The working model within SDLC was iterative, i.e. start with required simple features and increment iteratively to further additional / more  complex features.
 
 ## Step1: Requirement Analysis
 This step was not really relevant in this example project but could be mapped to task specification provided by task provider (BCAI-T). 
