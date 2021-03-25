@@ -24,13 +24,12 @@
 # @Author: hana.boukricha
 # @Date:   2021-03-06 22:12:41
 # @Last Modified by:   hana.boukricha
-# @Last Modified time: 2021-03-25 15:13:25
+# @Last Modified time: 2021-03-25 20:21:06
 
 """ This module provides an integrable api library to retrieve data on child care numbers in Baden Wuertemberg """
 
 import re as regex
 import pandas as pd
-import collections as coll
 
 def read_data(file_name, file_format):
     """ read the file data from str file_name with str file_format and return a data structure. Currently supported file_format is csv. """
@@ -90,7 +89,7 @@ def __read_data_csv(file_name):
         # please note that every 'element' in the rows except 'year' is called 'age' in this implementation
         num_rows = len(csv_data)
         num_columns = len(csv_data.columns)
-        data_dict = coll.defaultdict(dict)
+        data_dict = {}
         # going through all rows and columns of the dataframe
         for i in range(num_rows) :
             for j in range (num_columns) :
@@ -105,15 +104,21 @@ def __read_data_csv(file_name):
                         data_dict[csv_data.iloc[i, j]]['Tagespflege'] = {}
                         data_dict[csv_data.iloc[i, j]]['Insgesamt'] = {}
 
-                        data_dict[csv_data.iloc[i, j]]['Tageseinrichtung'][csv_data.iloc[i+1, j]] = csv_data.iloc[i+1, j+1]
-                        data_dict[csv_data.iloc[i, j]]['Tageseinrichtung'][csv_data.iloc[i+3, j]] = csv_data.iloc[i+3, j+1]
-                        data_dict[csv_data.iloc[i, j]]['Tageseinrichtung'][csv_data.iloc[i+4, j]] = csv_data.iloc[i+4, j+1]
+                        data_dict[csv_data.iloc[i, j]]['Tageseinrichtung'][csv_data.iloc[i+1, j].strip()] = csv_data.iloc[i+1, j+1]
+                        data_dict[csv_data.iloc[i, j]]['Tageseinrichtung'][csv_data.iloc[i+3, j].strip()] = csv_data.iloc[i+3, j+1]
+                        data_dict[csv_data.iloc[i, j]]['Tageseinrichtung'][csv_data.iloc[i+4, j].strip()] = csv_data.iloc[i+4, j+1]
+                        data_dict[csv_data.iloc[i, j]]['Tageseinrichtung'][csv_data.iloc[i+5, j].strip()] = csv_data.iloc[i+5, j+1]
+                        data_dict[csv_data.iloc[i, j]]['Tageseinrichtung'][csv_data.iloc[i+6, j].strip()] = csv_data.iloc[i+6, j+1]
 
-                        data_dict[csv_data.iloc[i, j]]['Tagespflege'][csv_data.iloc[i+1, j]] = csv_data.iloc[i+1, j+2]
-                        data_dict[csv_data.iloc[i, j]]['Tagespflege'][csv_data.iloc[i+3, j]] = csv_data.iloc[i+3, j+2]
-                        data_dict[csv_data.iloc[i, j]]['Tagespflege'][csv_data.iloc[i+4, j]] = csv_data.iloc[i+4, j+2]
+                        data_dict[csv_data.iloc[i, j]]['Tagespflege'][csv_data.iloc[i+1, j].strip()] = csv_data.iloc[i+1, j+2]
+                        data_dict[csv_data.iloc[i, j]]['Tagespflege'][csv_data.iloc[i+3, j].strip()] = csv_data.iloc[i+3, j+2]
+                        data_dict[csv_data.iloc[i, j]]['Tagespflege'][csv_data.iloc[i+4, j].strip()] = csv_data.iloc[i+4, j+2]
+                        data_dict[csv_data.iloc[i, j]]['Tagespflege'][csv_data.iloc[i+5, j].strip()] = csv_data.iloc[i+5, j+2]
+                        data_dict[csv_data.iloc[i, j]]['Tagespflege'][csv_data.iloc[i+6, j].strip()] = csv_data.iloc[i+6, j+2]
 
-                        data_dict[csv_data.iloc[i, j]]['Insgesamt'][csv_data.iloc[i+1, j]] = csv_data.iloc[i+1, j+3]
-                        data_dict[csv_data.iloc[i, j]]['Insgesamt'][csv_data.iloc[i+3, j]] = csv_data.iloc[i+3, j+3]
-                        data_dict[csv_data.iloc[i, j]]['Insgesamt'][csv_data.iloc[i+4, j]] = csv_data.iloc[i+4, j+3]
+                        data_dict[csv_data.iloc[i, j]]['Insgesamt'][csv_data.iloc[i+1, j].strip()] = csv_data.iloc[i+1, j+3]
+                        data_dict[csv_data.iloc[i, j]]['Insgesamt'][csv_data.iloc[i+3, j].strip()] = csv_data.iloc[i+3, j+3]
+                        data_dict[csv_data.iloc[i, j]]['Insgesamt'][csv_data.iloc[i+4, j].strip()] = csv_data.iloc[i+4, j+3]
+                        data_dict[csv_data.iloc[i, j]]['Insgesamt'][csv_data.iloc[i+5, j].strip()] = csv_data.iloc[i+5, j+3]
+                        data_dict[csv_data.iloc[i, j]]['Insgesamt'][csv_data.iloc[i+6, j].strip()] = csv_data.iloc[i+6, j+3]
         return data_dict
