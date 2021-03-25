@@ -1,7 +1,7 @@
 # @Author: hana.boukricha
 # @Date:   2021-03-24 21:31:09
 # @Last Modified by:   hana.boukricha
-# @Last Modified time: 2021-03-24 22:39:39
+# @Last Modified time: 2021-03-25 15:44:37
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
@@ -31,6 +31,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
+        python -m pip install pandas
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
