@@ -1,5 +1,5 @@
 # childcaredatabw
-childcaredatabw is an integrable Python api by which data can be queried from a given csv file 
+childcaredatabw is an integrable python api by which data can be queried from a given csv file 
 with child care numbers within Baden-Wurtemberg, e.g., by year, location, and age.
 
 ## Installation

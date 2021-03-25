@@ -51,4 +51,4 @@ Please provide an integrable API (library) in a language of your choice which al
     - too many extensions and offers for support resulting in unstable behavior, e.g., pylint shows random behavior despite being enabled within IDE. 
 - GitHub:
     - Current experience: Newbie.
-    - Due to the tied time schedule, did not manage to figure out provided GitHub actions like automating CI/CD using a GitHub workflow.  
+    - Due to the tight time schedule, did not manage to figure out provided GitHub actions like automating CI/CD using a GitHub workflow.

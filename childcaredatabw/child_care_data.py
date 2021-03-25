@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
-# Copyright (c) 2018 The Python Packaging Authority
+# Copyright (c) 2021 Hana Boukricha
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,24 @@
 # @Author: hana.boukricha
 # @Date:   2021-03-06 22:12:41
 # @Last Modified by:   hana.boukricha
-# @Last Modified time: 2021-03-25 22:53:34
+# @Last Modified time: 2021-03-26 00:37:25
 
 """ This module provides an integrable api library to retrieve data on child 
-care numbers in Baden Wuertemberg """
+care numbers in Baden-Wurtemberg """
 
 import re as regex
 import pandas as pd
 
 
 def read_data(file_name, file_format):
-    """ read the file data from str file_name with str file_format and return a data structure. 
-    Currently supported file_format is csv. """
+    """
+    Read the file data.
 
+    :param file_name: the name of the file with the input data
+    :param file_format: the format of the file with the input data
+    :return: data dictionary
+    """
+    
     if file_format == "csv":
         data = __read_data_csv(file_name)
     else:
@@ -49,51 +54,79 @@ def read_data(file_name, file_format):
 
 
 def get_data_year(year, data_structure):
-    """ read data_structure and return data_year including data for str year. Read data_structure 
-    with respect to str data_format. """
-    
+    """
+    Retrieve the data for a given year.
+
+    :param year: a defined year for which corresponding data will be returned
+    :param data_structure: the dictionary holding the input data
+    :return: data dictionary
+    """
+
     try:
         data_year = data_structure[year]
     except Exception as error:
         print(error)
+        return None
     else:
         print(data_year)
         return data_year
 
 
 def get_data_year_location(year, location, data_structure):
-    """ read data_structure and return data_year_location including data for str year and str location. 
-    Read data_structure with respect to str data_format. """
+    """
+    Retrieve the data for a given year and location.
+
+    :param year: a defined year for which corresponding data will be returned
+    :param location: a defined location for which corresponding data will be returned
+    :param data_structure: the dictionary holding the input data
+    :return: data dictionary
+    """
     
     try:
         data_year_location = data_structure[year][location]
     except Exception as error:
         print(error)
+        return None
     else:
         print(data_year_location)
         return data_year_location
 
 
 def get_data_year_location_age(year, location, age, data_structure):
-    """ read data_structure and return data_year_age including data for str year and str age. Read data_structure 
-    with respect to str data_format. """
-    
+    """
+    Retrieve the data for a given year, location, and age.
+
+    :param year: a defined year for which corresponding data will be returned
+    :param location: a defined location for which corresponding data will be returned
+    :param age: a defined age for which corresponding data will be returned
+    :param data_structure: the dictionary holding the input data
+    :return: data dictionary
+    """
+
     try:
         data_year_location_age = data_structure[year][location][age]
     except Exception as error:
         print(error)
+        return None
     else:
         print(data_year_location_age)
         return data_year_location_age
 
 
 def __read_data_csv(file_name):
-    """ read csv formatted data from str file_name and returns a pandas dataframe csv_data. """
+    """
+    Read csv file data.
+
+    :param file_name: the name of the csv file with the input data
+    :return: data dictionary
+    """
+    
     try:
         csv_data = pd.read_csv(file_name, delimiter=";", skiprows=2, header=None)
 
     except Exception as error:
         print(error)
+        return None
     else:
         # restructure / organize csv_data to easily define filters and query data from dataframe
         # new structure is 'year/age' (rows) x 'location' (columns)
