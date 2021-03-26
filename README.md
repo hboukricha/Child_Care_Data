@@ -8,7 +8,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install childca
 
 ```bash
 python3 -m pip install pandas
-python3 -m pip install -i https://test.pypi.org/simple/ childcaredatabw==0.0.5
+python3 -m pip install -i https://test.pypi.org/simple/ childcaredatabw==0.0.6
 ```
 
 ## Usage
