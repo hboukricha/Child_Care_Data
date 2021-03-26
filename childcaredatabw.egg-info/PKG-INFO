@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
 Name: childcaredatabw
-Version: 0.0.6
+Version: 0.0.7
 Summary: API to retrieve child care data in Baden-Wurtemberg
-Home-page: https://test.pypi.org/project/childcaredatabw/0.0.5
+Home-page: https://test.pypi.org/project/childcaredatabw/0.0.7
 Author: Hana Boukricha
 Author-email: bouricha.hana@gmail.com
 License: UNKNOWN
@@ -19,7 +19,7 @@ Description: # childcaredatabw
         
         ```bash
         python3 -m pip install pandas
-        python3 -m pip install -i https://test.pypi.org/simple/ childcaredatabw==0.0.5
+        python3 -m pip install -i https://test.pypi.org/simple/ childcaredatabw==0.0.7
         ```
         
         ## Usage
